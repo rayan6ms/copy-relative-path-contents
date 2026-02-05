@@ -1,0 +1,66 @@
+{
+  "name": "copy-relative-path-and-content",
+  "displayName": "Copy Relative Path and Content",
+  "description": "Copy selected files as relative path + fenced code block content from the VS Code Explorer context menu.",
+  "version": "0.0.1",
+  "publisher": "rayan6ms",
+  "license": "GPL-3.0-only",
+  "homepage": "https://github.com/rayan6ms/copy-relative-path-contents#readme",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/rayan6ms/copy-relative-path-contents.git"
+  },
+  "bugs": {
+    "url": "https://github.com/rayan6ms/copy-relative-path-contents/issues"
+  },
+  "engines": {
+    "vscode": "^1.85.0"
+  },
+  "main": "./out/extension.js",
+  "activationEvents": [
+    "onCommand:copyRelativePathAndContent.copy"
+  ],
+  "categories": [
+    "Other"
+  ],
+  "keywords": [
+    "vscode",
+    "clipboard",
+    "copy",
+    "explorer",
+    "path",
+    "markdown"
+  ],
+  "contributes": {
+    "commands": [
+      {
+        "command": "copyRelativePathAndContent.copy",
+        "title": "Copy Relative Path and Content"
+      }
+    ],
+    "menus": {
+      "explorer/context": [
+        {
+          "command": "copyRelativePathAndContent.copy",
+          "group": "9_cutcopypaste"
+        }
+      ]
+    }
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run compile",
+    "compile": "tsc -p ./",
+    "package": "npm run compile && vsce package"
+  },
+  "devDependencies": {
+    "@types/node": "^20.0.0",
+    "@types/vscode": "^1.85.0",
+    "typescript": "^5.0.0"
+  },
+  "files": [
+    "out/**",
+    "package.json",
+    "README.md",
+    "LICENSE"
+  ]
+}

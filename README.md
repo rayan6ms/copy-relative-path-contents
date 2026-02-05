@@ -8,8 +8,9 @@ Output format:
 docs/spec.md:
 ```md
 <file content>
-```‎
+```‎ 
 ```
+
 ---
 
 ## Features
@@ -33,13 +34,30 @@ docs/spec.md:
 
 ## Install
 
-### Option A) Install from a `.vsix`
-1. Download the latest `.vsix` from the GitHub Releases page.
-2. In VS Code, open the Extensions view.
-3. Click the `...` menu → **Install from VSIX...**
-4. Select the downloaded `.vsix`.
+GitHub may reject uploading `.vsix` directly as a Release asset in some cases.
+As a workaround, Releases provide the packaged extension as a **`.zip`** (it is the same VSIX file content).
 
-### Option B) Run locally in dev mode
+### Option A) Install from GitHub Releases (`.zip` → `.vsix`)
+1. Download the latest release asset (example):  
+   `copy-relative-path-and-content.zip`
+2. Rename it to `.vsix`:
+   - `copy-relative-path-and-content.zip` → `copy-relative-path-and-content-<version>.vsix`
+3. In VS Code, open the Extensions view.
+4. Click the `...` menu → **Install from VSIX...**
+5. Select the renamed `.vsix`.
+
+### Option B) Install via terminal (same thing but automatically)
+Download the latest release asset and save it as a `.vsix`:
+
+```bash
+curl -L -o copy-relative-path-and-content.vsix \
+  https://github.com/rayan6ms/copy-relative-path-contents/releases/latest/download/copy-relative-path-and-content.zip
+
+code --install-extension copy-relative-path-and-content.vsix
+```
+
+### Option C) Run locally in dev mode
+
 1. Clone the repo
 2. Install dependencies
 3. Run the extension
@@ -64,11 +82,11 @@ npm run compile
 ### Package
 
 ```bash
-npm install -g @vscode/vsce
-vsce package
+npm install
+npm run release:asset
 ```
 
-This generates a `.vsix` file.
+This generates a `.zip` file. If you want a `.vsix` file directly just rename it to `.vsix` or use `npx vsce package` in the project root.
 
 ---
 
